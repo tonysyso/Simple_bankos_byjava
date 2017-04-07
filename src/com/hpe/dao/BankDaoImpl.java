@@ -36,6 +36,10 @@ public class BankDaoImpl implements BankDao {
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeRs(rs);
+			DBConnection.closeStmt(pstmt);
+			DBConnection.closeConn(conn);
 		}
 		return false;
 	}
@@ -57,6 +61,9 @@ public class BankDaoImpl implements BankDao {
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeStmt(pstmt);
+			DBConnection.closeConn(conn);
 		}
 		return result;
 	}
@@ -73,6 +80,10 @@ public class BankDaoImpl implements BankDao {
 			while(rs.next()) allMoney =rs.getDouble(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeRs(rs);
+			DBConnection.closeStmt(pstmt);
+			DBConnection.closeConn(conn);
 		}
 		
 		return allMoney;
@@ -97,6 +108,10 @@ public class BankDaoImpl implements BankDao {
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeRs(rs);
+			DBConnection.closeStmt(pstmt);
+			DBConnection.closeConn(conn);
 		}
 		return rankList;
 	}
@@ -116,6 +131,10 @@ public class BankDaoImpl implements BankDao {
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeRs(rs);
+			DBConnection.closeStmt(pstmt);
+			DBConnection.closeConn(conn);
 		}
 		return false;
 	}
@@ -209,6 +228,10 @@ public class BankDaoImpl implements BankDao {
 			while(rs.next()) Money =rs.getDouble(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeRs(rs);
+			DBConnection.closeStmt(pstmt);
+			DBConnection.closeConn(conn);
 		}
 		return Money;
 		
@@ -294,6 +317,9 @@ public class BankDaoImpl implements BankDao {
 				resultInt = pstmt.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {
+				DBConnection.closeStmt(pstmt);
+				DBConnection.closeConn(conn);
 			}
 		return resultInt;
 	}
@@ -333,8 +359,9 @@ public class BankDaoImpl implements BankDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+		}  finally {
 			DBConnection.closeRs(rs);
+			DBConnection.closeStmt(pstmt);
 			DBConnection.closeConn(conn);
 		}
 		return 1;
